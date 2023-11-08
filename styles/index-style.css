@@ -1,6 +1,32 @@
+@import url("./fonts.css");
 body{
     width: 100vw;
     height: 100vh;
     background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
     font-family: "boxfont", sans-serif;
+    font-size: 2.7rem;
+    display: flex;
+    justify-content: center;    
 }
+
+.x, .o, .player-one, .player-two{
+    cursor: pointer;
+    user-select: none;
+    
+}
+
+
+.choose-players, .choose-sign {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 100px;
+}
+.choose-sign{
+    margin-top: 100px;
+    gap: 200px;
+    font-size: 5rem;
+}
+
+
+
