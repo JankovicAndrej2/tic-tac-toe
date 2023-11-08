@@ -1,3 +1,5 @@
+
+
 let choosePlayers = document.querySelectorAll(".players");
 
 let playersOption;
@@ -57,7 +59,14 @@ chooseSign.forEach((element,index) => {
             element.style.textShadow = "0px 0px 0px rgb(11, 148, 228)";
         }
     })
-
 })
+
+let start = document.querySelector(".start");
+let body = document.querySelector("body");
+start.addEventListener("click", ()=>{
+    body.innerHTML = "";
+})
+
+
 
 
