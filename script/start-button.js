@@ -1,5 +1,5 @@
 import { signOption,playersOption } from "./first-site-script.js";
-
+import { GenerateBlankPage } from "./game-screen-generator.js";
 
 let body = document.querySelector("body");
 let options = document.querySelectorAll(".option");
@@ -21,6 +21,6 @@ if(start)
 {
     start.addEventListener("click",()=>{
         body.innerHTML = "";
-        
+        GenerateBlankPage();
     })
 }

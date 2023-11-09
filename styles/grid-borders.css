@@ -1,0 +1,15 @@
+:root {
+    --border : 2px solid black;
+}
+.box-1, .box-7{
+    border-left: var(--border);
+    border-right: var(--border);
+}
+.box-3, .box-5{
+    border-top: var(--border);
+    border-bottom: var(--border);
+}
+
+.box-4{
+    border: var(--border);
+}
