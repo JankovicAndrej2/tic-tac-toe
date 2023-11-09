@@ -1,8 +1,8 @@
 
 
 let choosePlayers = document.querySelectorAll(".players");
-
-let playersOption;
+  
+export let playersOption;
 
 
 choosePlayers.forEach((element,index) => {
@@ -34,38 +34,34 @@ choosePlayers.forEach((element,index) => {
 
 
 let chooseSign = document.querySelectorAll(".signs");
-let signOptions;
+export let signOption;
 
 chooseSign.forEach((element,index) => {
     element.addEventListener("click", ()=>{
         if(index == 1){
             chooseSign[1].style.textShadow = "0px 0px 13px rgb(11, 148, 228)";
             chooseSign[0].style.textShadow = "0px 0px 0px rgb(11, 148, 228)";
-            playersOption = index;
+            signOption = index;
         }
         else if(index == 0)
         {
             chooseSign[0].style.textShadow = "0px 0px 13px rgb(11, 148, 228)";
             chooseSign[1].style.textShadow = "0px 0px 0px rgb(11, 148, 228)";
-            playersOption = index;
+            signOption = index;
         }
     })
     element.addEventListener("mouseover", ()=>{
         element.style.textShadow = "0px 0px 13px rgb(11, 148, 228)";
     })
     element.addEventListener("mouseout", ()=>{
-        if(!(index == playersOption))
+        if(!(index == signOption))
         {
             element.style.textShadow = "0px 0px 0px rgb(11, 148, 228)";
         }
     })
 })
 
-let start = document.querySelector(".start");
-let body = document.querySelector("body");
-start.addEventListener("click", ()=>{
-    body.innerHTML = "";
-})
+
 
 
 
