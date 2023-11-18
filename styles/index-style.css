@@ -107,6 +107,13 @@ body{
     opacity: 1;
 }
 
+.grid>*{
+    display: flex;
+    justify-content: center;
+    align-items: cent   er;
+    font-size: 5rem;
+}
+
 
 
 
