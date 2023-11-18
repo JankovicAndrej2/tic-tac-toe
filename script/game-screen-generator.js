@@ -1,4 +1,6 @@
 import { signOption,playersOption } from "./first-site-script.js";
+import { Players } from "./player.js";
+import { PlayGame } from "./gameplay.js";
 
 export function GenerateBlankPage(){
 
@@ -50,24 +52,33 @@ export function GenerateBlankPage(){
     body.appendChild(playerName1);
     body.appendChild(playerName2);
     
-    playerScore1.textContent = "0";
-    playerScore2.textContent = "0";
+    playerScore1.textContent = Players[0].score;
+    playerScore2.textContent = Players[1].score;
     body.appendChild(playerScore1);
     body.appendChild(playerScore2);
     
-    playsFirst1.textContent = "Plays first";
+    if(Players[0].FirstMove)
+    {
+        playsFirst1.textContent = "Plays First";
+    }
+    else{
+        playsFirst2.textContent = "Plays First";
+    }
     
     body.appendChild(playsFirst1);
     
-    if(signOption == 0){
+   if(Players[0].sign == "X")
+   {
         sign1.textContent = "X";
         sign2.textContent = "O";
-    }
-    else{
+   }
+   else{
         sign1.textContent = "O";
         sign2.textContent = "X";
-    }
+   }
     
     body.appendChild(sign1);
     body.appendChild(sign2);
+
+    PlayGame();
 }

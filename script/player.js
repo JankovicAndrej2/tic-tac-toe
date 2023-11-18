@@ -1,6 +1,6 @@
 import { signOption,playersOption } from "./first-site-script.js";
 
-class Player
+export class Player
 {
     constructor(sign, isBot, isOnMove,FirstMove,score)
     {

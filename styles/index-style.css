@@ -110,7 +110,7 @@ body{
 .grid>*{
     display: flex;
     justify-content: center;
-    align-items: cent   er;
+    align-items: center;
     font-size: 5rem;
 }
 

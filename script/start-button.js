@@ -25,9 +25,9 @@ if(start)
 {
     start.addEventListener("click",()=>{
         body.innerHTML = "";
-        GenerateBlankPage();
         GeneratePlayers();
+        GenerateBlankPage();
         
-        PlayGame();
+        
     })
 }

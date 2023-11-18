@@ -25,14 +25,16 @@ export function PlayGame(){
                 //play bot move
                 for(let j = 0;j<2;j++)
                 {
-                    if(Players[j].isBot)
+                    if(Players[j].isBot && gameArray.includes("-"))
                     {
                         let x;
                         do{
                             x = Math.round(Math.random()*8);
                         }while(gameArray[x] != "-");
                         gameArray[x] = Players[j].sign;
-                        VArray();
+                        Players[0].isOnMove = !Players[0].isOnMove;
+                        Players[1].isOnMove = !Players[1].isOnMove;
+                        VArray();   
                     }
                 }
                 console.log(gameArray);
