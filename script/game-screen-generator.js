@@ -3,8 +3,8 @@ import { Players } from "./player.js";
 import { PlayGame } from "./gameplay.js";
 
 export function GenerateBlankPage(){
-
     let body = document.querySelector("body");
+    body.innerHTML = "";
     let grid = document.createElement("div");
     grid.classList.add("grid");
     
@@ -80,5 +80,5 @@ export function GenerateBlankPage(){
     body.appendChild(sign1);
     body.appendChild(sign2);
 
-    PlayGame();
+    
 }

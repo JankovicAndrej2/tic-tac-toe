@@ -1,7 +1,7 @@
 import { signOption,playersOption } from "./first-site-script.js";
 import { GenerateBlankPage } from "./game-screen-generator.js";
 import { PlayGame } from "./gameplay.js";
-import { GeneratePlayers } from "./player.js";
+import { GeneratePlayers, Players } from "./player.js";
 
 
 
@@ -24,9 +24,10 @@ options.forEach((element)=>{
 if(start)
 {
     start.addEventListener("click",()=>{
-        body.innerHTML = "";
+        
         GeneratePlayers();
         GenerateBlankPage();
+        PlayGame();
         
         
     })

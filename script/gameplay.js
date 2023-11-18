@@ -1,11 +1,33 @@
 import { Players } from "./player.js";
+import { GenerateBlankPage } from "./game-screen-generator.js";
 
 export let gameArray = ["-","-","-","-","-","-","-","-","-"];
 let playIndex;
-export function PlayGame(){
+let body = document.querySelector("body");
+export function PlayGame()
+{
+    //ako je prvi na potezu bot
+    
     let boxes = document.querySelectorAll(".boxes");
-    boxes.forEach((element,index) => {
-        element.addEventListener("click",()=>{
+    if(!gameArray.includes("X") && !gameArray.includes("O"))
+    {
+        if(Players[1].isOnMove)
+        {
+            let x;
+            do{
+                x = Math.round(Math.random()*8);
+            }while(gameArray[x] != "-");
+            gameArray[x] = Players[j].sign;
+            Players[0].isOnMove = !Players[0].isOnMove;
+            Players[1].isOnMove = !Players[1].isOnMove;
+            //vizualize
+            VizArray()
+        }
+    }
+    
+
+    boxes.forEach((element,index)=>{
+        element.addEventListener("click", ()=>{
             for(let i = 0; i<2;i++)
             {
                 console.log(Players);
@@ -14,17 +36,15 @@ export function PlayGame(){
                     playIndex = i;
                 }
             }
-            
+
             if(gameArray[index] == "-")
             {
                 gameArray[index] = Players[playIndex].sign;
                 Players[0].isOnMove = !Players[0].isOnMove;
                 Players[1].isOnMove = !Players[1].isOnMove;
-                VArray();
-                console.log(gameArray);
-                //play bot move
-                for(let j = 0;j<2;j++)
-                {
+                //vizaulize
+                VizArray()
+                for(let j = 0;j<2;j++){
                     if(Players[j].isBot && gameArray.includes("-"))
                     {
                         let x;
@@ -34,24 +54,21 @@ export function PlayGame(){
                         gameArray[x] = Players[j].sign;
                         Players[0].isOnMove = !Players[0].isOnMove;
                         Players[1].isOnMove = !Players[1].isOnMove;
-                        VArray();   
+                        //vizulize
+                        VizArray();
                     }
                 }
-                console.log(gameArray);
+
+
+
             }
-
-
-            
-
-
-
-
-        })
-    });
+        });
+    })
 }
 
 
-function VArray(){
+function VizArray()
+{
     let boxes = document.querySelectorAll(".boxes");
     boxes.forEach((element,index) => {
         if(gameArray[index] == "-")
@@ -59,8 +76,18 @@ function VArray(){
             element.textContent = "";
         }
         else{
-            element.textContent = gameArray[index];
+            element.textContent = gameArray[index]; 
         }
     });
+}
+
+
+function CheckForSetWinner(){
 
 }
+
+function CheckForGameWinner(){
+
+}
+
+function CombChecker(){}
