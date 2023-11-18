@@ -6,7 +6,7 @@ export function GenerateBlankPage(){
     let grid = document.createElement("div");
     grid.classList.add("grid");
     
-    for(let i = 0; i<=9;i++)
+    for(let i = 0; i<=8;i++)
     {
         let box =document.createElement("div");
         box.classList.add("boxes");

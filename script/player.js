@@ -32,10 +32,11 @@ export function GeneratePlayers()
         Player2 = new Player(secondSign, true,false,false,0);
     }
     else{
-        Player2 = new Player(secondSign, false,false,0);
+        Player2 = new Player(secondSign, false,false,false,0);
     }
 
     Players.push(Player1);
     Players.push(Player2);
     
 }
+
