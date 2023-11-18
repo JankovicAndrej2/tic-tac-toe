@@ -64,18 +64,20 @@ export function GenerateBlankPage(){
     else{
         playsFirst2.textContent = "Plays First";
     }
+    if(playsFirst1.textContent == "Plays First")
+    {
+        body.appendChild(playsFirst1);
+    }
+    else{
+        body.appendChild(playsFirst2);
+    }
     
-    body.appendChild(playsFirst1);
-    
-   if(Players[0].sign == "X")
-   {
-        sign1.textContent = "X";
-        sign2.textContent = "O";
-   }
-   else{
-        sign1.textContent = "O";
-        sign2.textContent = "X";
-   }
+
+
+    sign1.textContent = Players[0].sign;
+    sign2.textContent = Players[1].sign;
+
+   
     
     body.appendChild(sign1);
     body.appendChild(sign2);
