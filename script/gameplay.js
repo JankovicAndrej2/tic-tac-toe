@@ -9,21 +9,19 @@ export function PlayGame()
     //ako je prvi na potezu bot
     
     let boxes = document.querySelectorAll(".boxes");
-    if(!gameArray.includes("X") && !gameArray.includes("O"))
+    if(!gameArray.includes("X") &&  !gameArray.includes("O"))
     {
         if(Players[1].isOnMove && Players[1].isBot)
         {
             let x;
-            
             x = Math.round(Math.random()*8);
-            
             gameArray[x] = Players[1].sign;
-            console.log(Players);
             SwitchMoves();
-            console.log(Players);
-            
-            //vizualize
             VizArray();
+            CheckForSetWinner();
+            CheckForGameWinner();
+            
+            
         }
     }
     
@@ -43,21 +41,22 @@ export function PlayGame()
             {
                 gameArray[index] = Players[playIndex].sign;
                 SwitchMoves();
-                //vizaulize
                 VizArray();
                 CheckForSetWinner();
+                CheckForGameWinner();
+                //bot move
                 for(let j = 0;j<2;j++){
                     if(Players[j].isBot && gameArray.includes("-"))
                     {
                         let x;
                         do{
                             x = Math.round(Math.random()*8);
-                        }while(gameArray[x] != "-");
+                        }while(gameArray[x] != "-" && gameArray.includes("-"));
                         gameArray[x] = Players[j].sign;
                         SwitchMoves();
-                        //vizulize
-                        VizArray();
                         CheckForSetWinner();
+                        VizArray();
+                        CheckForGameWinner();
                     }
                 }
 
@@ -85,6 +84,7 @@ function VizArray()
 
 
 function CheckForSetWinner(){
+    
     if(CombChecker(Players[0].sign)){
         Players[0].score++;
 
@@ -116,6 +116,50 @@ function CheckForSetWinner(){
 }
 
 function CheckForGameWinner(){
+    let body = document.querySelector("body");
+    let winner;
+    if(Players[0].score >=3)
+    {
+        winner = document.createElement("div");
+        winner.textContent = "Winner is Player 1!";
+    }
+    if(Players[1].score >=3){
+        if(Players[1].isBot)
+        {
+            winner = document.createElement("div");
+            winner.textContent = "Winner is Computer!";
+        }
+        else{
+            winner = document.createElement("div");
+            winner.textContent = "Winner is Player 2!";
+        }
+    }
+
+    if(Players[0].score >=3 || Players[1].score >=3)
+    {
+        body.textContent = "";
+        winner.classList.add("winner-text");
+        let playAgain = document.createElement("div");
+        playAgain.classList.add("play-again-button");
+        playAgain.textContent = "Play Again";
+        let box = document.createElement("div");
+        box.classList.add("box");
+        box.appendChild(winner);
+        box.appendChild(playAgain);
+        
+        body.appendChild(box);
+
+        playAgain.addEventListener("click",()=>{
+            body.innerHTML = "";
+            Players[0].score = 0;
+            Players[1].score = 0;
+            gameArray = ["-","-","-","-","-","-","-","-","-"];
+            GenerateBlankPage();
+
+            PlayGame();
+            
+        })
+    }
 
 }
 
@@ -148,14 +192,7 @@ function MoveSwitch(){
             Players[1].isOnMove = true;
         }
 
-        if(Players[0].sign == "X")
-        {
-            Players[0].sign == "O";
-            Players[1].sign == "X";
-        }else{
-            Players[1].sign == "O";
-            Players[0].sign == "X";
-        }
+        
         gameArray = ["-","-","-","-","-","-","-","-","-"];
         
 
