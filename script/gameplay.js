@@ -16,8 +16,8 @@ export function PlayGame()
             let x;
             x = Math.round(Math.random()*8);
             gameArray[x] = Players[1].sign;
-            SwitchMoves();
             VizArray();
+            SwitchMoves();
             CheckForSetWinner();
             CheckForGameWinner();
             
@@ -31,33 +31,34 @@ export function PlayGame()
             for(let i = 0; i<2;i++)
             {
                 
-                if(Players[i].isOnMove)
+                if(Players[i].isOnMove && !Players[i].isBot)
                 {
                     playIndex = i;
+                    if(gameArray[index] == "-")
+                    {
+                        gameArray[index] = Players[playIndex].sign;
+                        VizArray();
+                        SwitchMoves();
+                        CheckForSetWinner();
+                        CheckForGameWinner();
+                        
+                        //bot move
+                    }
                 }
             }
 
-            if(gameArray[index] == "-")
-            {
-                gameArray[index] = Players[playIndex].sign;
-                SwitchMoves();
-                VizArray();
-                CheckForSetWinner();
-                CheckForGameWinner();
-                //bot move
-                for(let j = 0;j<2;j++){
-                    if(Players[j].isBot && gameArray.includes("-"))
-                    {
-                        let x;
-                        do{
-                            x = Math.round(Math.random()*8);
-                        }while(gameArray[x] != "-" && gameArray.includes("-"));
-                        gameArray[x] = Players[j].sign;
-                        SwitchMoves();
-                        CheckForSetWinner();
-                        VizArray();
-                        CheckForGameWinner();
-                    }
+            for(let j = 0;j<2;j++){
+                if(Players[j].isBot && gameArray.includes("-") && Players[j].isOnMove)
+                {
+                    let x;
+                    do{
+                        x = Math.round(Math.random()*8);
+                    }while(gameArray[x] != "-" && gameArray.includes("-"));
+                    gameArray[x] = Players[j].sign;
+                    VizArray();
+                    SwitchMoves();
+                    CheckForSetWinner();
+                    CheckForGameWinner();
                 }
 
 
@@ -97,7 +98,6 @@ function CheckForSetWinner(){
         Players[1].score++;
 
         MoveSwitch();
-
         GenerateBlankPage();
         PlayGame();
         return;
@@ -179,21 +179,29 @@ function CombChecker(sign){
 
 function MoveSwitch(){
         
-        Players[0].FirstMove = !Players[0].FirstMove;
-        Players[1].FirstMove = !Players[1].FirstMove;
+    if(Players[0].FirstMove)
+    {
+        Players[0].FirstMove = false;
+        Players[1].FirstMove = true;
+    }
+    else{
+        Players[1].FirstMove = false;
+        Players[0].FirstMove = true;
+    }
 
-        if(Players[0].FirstMove)
-        {
-            Players[0].isOnMove = true;
-            Players[1].isOnMove = false;
-        }
-        else{
-            Players[0].isOnMove = false;
-            Players[1].isOnMove = true;
-        }
-
-        
-        gameArray = ["-","-","-","-","-","-","-","-","-"];
+    if(Players[0].FirstMove)
+    {
+        Players[0].isOnMove = true;
+        Players[1].isOnMove = false;
+    }
+    else{
+        Players[0].isOnMove = false;
+        Players[1].isOnMove = true;
+    }
+    
+    
+    
+    gameArray = ["-","-","-","-","-","-","-","-","-"];
         
 
 }
